@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>For My Special Queen 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 50%, #f8e8ee 100%);
+    color: #5a2a3c;
+    min-height: 100dvh;
+    width: 100vw;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  /* Floating Ambient Background Particles */
+  .bg-floater {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    animation: floatUp linear infinite;
+    opacity: 0.45;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+    20% { opacity: 0.5; }
+    80% { opacity: 0.5; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* Main App Container */
+  .screen {
+    display: none;
+    width: 100%;
+    max-width: 440px;
+    min-height: 100dvh;
+    padding: 20px 18px 30px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 2;
+    animation: fadeInScale 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .screen.active {
+    display: flex;
+  }
+
+  @keyframes fadeInScale {
+    from { opacity: 0; transform: translateY(18px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 182, 193, 0.6);
+    border-radius: 26px;
+    padding: 22px 18px;
+    width: 100%;
+    box-shadow: 0 12px 32px rgba(219, 112, 147, 0.16);
+  }
+
+  h1, h2 {
+    font-family: 'Dancing Script', cursive;
+    color: #d6336c;
+    font-size: 2rem;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    color: #7a4458;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+    color: #fff;
+    border: none;
+    padding: 13px 26px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(255, 117, 140, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:active {
+    transform: scale(0.94);
+  }
+
+  /* ================= LEVEL 1: PHONE LOCK SCREEN ================= */
+  .lock-icon {
+    font-size: 2.6rem;
+    margin-bottom: 6px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+  .pin-dots {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid #d6336c;
+    background: transparent;
+    transition: all 0.2s;
+  }
+  .dot.filled {
+    background: #d6336c;
+    transform: scale(1.15);
+    box-shadow: 0 0 10px rgba(214, 51, 108, 0.5);
+  }
+  .pin-dots.shake {
+    animation: shake 0.4s;
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+  }
+  .keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-width: 270px;
+    margin: 10px auto 0;
+  }
+  .key {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1.5px solid #ffc2d1;
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: #b5174c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(214, 51, 108, 0.1);
+    transition: background 0.15s, transform 0.1s;
+    margin: auto;
+  }
+  .key:active {
+    background: #ffccd5;
+    transform: scale(0.92);
+  }
+  .key.empty {
+    visibility: hidden;
+  }
+
+  /* ================= LEVEL 2: 3D HEART TREE ================= */
+  .tree-wrapper {
+    position: relative;
+    width: 100%;
+    height: 310px;
+    margin: 8px 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .tree-svg {
+    width: 290px;
+    height: 300px;
+    filter: drop-shadow(0 10px 14px rgba(139, 69, 19, 0.25));
+  }
+  .bloom-heart {
+    position: absolute;
+    font-size: 2.35rem;
+    cursor: pointer;
+    filter: drop-shadow(0 6px 8px rgba(0,0,0,0.22));
+    animation: heartBloom 2.4s ease-in-out infinite alternate;
+    transition: transform 0.25s;
+    z-index: 5;
+  }
+  .bloom-heart:active {
+    transform: scale(1.3);
+  }
+  .bloom-heart.read {
+    opacity: 0.78;
+    filter: drop-shadow(0 0 10px gold);
+  }
+  @keyframes heartBloom {
+    0% { transform: scale(0.95) translateY(0px); }
+    100% { transform: scale(1.12) translateY(-5px); }
+  }
+
+  /* Modal for Heart & Balloon Messages */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(60, 15, 35, 0.55);
+    backdrop-filter: blur(5px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 18px;
+    z-index: 100;
+    animation: fadeIn 0.3s ease;
+  }
+  .modal-overlay.show {
+    display: flex;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+  .modal-box {
+    background: linear-gradient(160deg, #ffffff 0%, #fff0f6 100%);
+    border: 2.5px solid #ff8fa3;
+    border-radius: 26px;
+    padding: 22px 18px;
+    max-width: 400px;
+    width: 100%;
+    max-height: 82dvh;
+    overflow-y: auto;
+    text-align: left;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    animation: popUp 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  @keyframes popUp {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .modal-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.7rem;
+    color: #d6336c;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .modal-text {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: #4a1c2d;
+  }
+  .modal-text p {
+    margin-bottom: 8px;
+    padding-left: 6px;
+    border-left: 3px solid #ff8fa3;
+  }
+
+  /* ================= LEVEL 3: LOVE QUIZ & THERMOMETER ================= */
+  .quiz-area {
+    position: relative;
+    min-height: 160px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 15px;
+  }
+  .btn-yes {
+    background: linear-gradient(135deg, #2ec4b6, #20a4f3);
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(46, 196, 182, 0.4);
+    z-index: 3;
+  }
+  .btn-no {
+    background: #ffccd5;
+    color: #800f2f;
+    border: 2px solid #ff758f;
+    padding: 12px 26px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+    z-index: 4;
+  }
+  .thermo-box {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .thermometer {
+    width: 36px;
+    height: 140px;
+    background: #ffe5ec;
+    border: 3px solid #ff4d6d;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    margin: 10px auto;
+  }
+  .mercury {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10%;
+    background: linear-gradient(to top, #ff0a54, #ff7096);
+    transition: height 1.6s ease-in;
+  }
+  .thermometer.broken {
+    animation: explodeThermo 0.5s forwards;
+  }
+  @keyframes explodeThermo {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.25) rotate(8deg); }
+    100% { transform: scale(1) rotate(-6deg); border-style: dashed; }
+  }
+  .kiss-particle {
+    position: fixed;
+    font-size: 2.3rem;
+    pointer-events: none;
+    z-index: 999;
+    animation: kissRain 2.6s ease-out forwards;
+  }
+  @keyframes kissRain {
+    0% { transform: translateY(-20px) scale(0.4) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) scale(1.3) rotate(35deg); opacity: 0; }
+  }
+
+  /* ================= LEVEL 4: PERIOD COMFORT CAKE ================= */
+  .cake-stage {
+    position: relative;
+    margin: 18px auto 12px;
+    width: 220px;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+  }
+  .candle {
+    width: 14px;
+    height: 44px;
+    background: repeating-linear-gradient(45deg, #fff, #fff 5px, #ff758f 5px, #ff758f 10px);
+    border-radius: 4px;
+    position: relative;
+    z-index: 3;
+  }
+  .flame {
+    width: 18px;
+    height: 26px;
+    background: radial-gradient(circle at 50% 70%, #fff 10%, #ffd166 45%, #f77f00 85%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: absolute;
+    top: -28px;
+    left: -2px;
+    box-shadow: 0 0 18px #ff9f1c;
+    animation: flicker 0.3s infinite alternate;
+  }
+  @keyframes flicker {
+    from { transform: scale(1) rotate(-3deg); }
+    to { transform: scale(1.1) rotate(3deg); }
+  }
+  .cake-top {
+    width: 150px;
+    height: 44px;
+    background: linear-gradient(180deg, #ff8fa3, #ff4d6d);
+    border-radius: 16px 16px 6px 6px;
+    position: relative;
+    box-shadow: inset 0 -6px 0 rgba(0,0,0,0.08);
+    transition: transform 0.6s ease;
+  }
+  .cake-bottom {
+    width: 195px;
+    height: 55px;
+    background: linear-gradient(180deg, #ffb3c1, #ff758f);
+    border-radius: 14px 14px 18px 18px;
+    box-shadow: 0 10px 20px rgba(214, 51, 108, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+  .cake-cut-slice {
+    transform: translateX(18px) rotate(4deg);
+  }
+  .comfort-note {
+    background: #fff5f8;
+    border: 1.5px dashed #ff758f;
+    border-radius: 18px;
+    padding: 14px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #591c32;
+    margin-top: 12px;
+    text-align: left;
+  }
+
+  /* ================= LEVEL 5: 4 COMFORT BALLOONS ================= */
+  .balloon-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin: 18px 0;
+  }
+  .balloon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    animation: floatBalloon 2.5s ease-in-out infinite alternate;
+  }
+  .balloon-item:nth-child(2) { animation-delay: 0.4s; }
+  .balloon-item:nth-child(3) { animation-delay: 0.8s; }
+  .balloon-item:nth-child(4) { animation-delay: 1.2s; }
+  @keyframes floatBalloon {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-10px); }
+  }
+  .balloon-shape {
+    width: 82px;
+    height: 98px;
+    border-radius: 50% 50% 50% 50% / 45% 45% 55% 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    color: white;
+    box-shadow: inset -8px -10px 18px rgba(0,0,0,0.15), 0 8px 16px rgba(0,0,0,0.12);
+    position: relative;
+    transition: transform 0.2s;
+  }
+  .balloon-shape::after {
+    content: "";
+    width: 2px;
+    height: 32px;
+    background: #c9184a;
+    position: absolute;
+    bottom: -32px;
+  }
+  .balloon-item.popped .balloon-shape {
+    background: transparent !important;
+    box-shadow: none;
+    font-size: 2.6rem;
+  }
+  .balloon-item.popped .balloon-shape::after {
+    display: none;
+  }
+
+  /* ================= LEVEL 6: DUDU BEAUTY SCANNER ================= */
+  .scanner-stage {
+    position: relative;
+    background: #fff0f5;
+    border: 2px solid #ff8fa3;
+    border-radius: 22px;
+    padding: 18px 12px;
+    margin: 14px 0;
+    overflow: hidden;
+  }
+  .dudu-character {
+    font-size: 4.2rem;
+    display: inline-block;
+    transition: transform 0.4s;
+  }
+  .dudu-character.dizzy {
+    animation: dizzySpin 1.2s ease-in-out infinite;
+  }
+  @keyframes dizzySpin {
+    0% { transform: rotate(-14deg) scale(1.05); }
+    50% { transform: rotate(14deg) scale(0.95); }
+    100% { transform: rotate(-14deg) scale(1.05); }
+  }
+  .laser-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #ff0a54, #00f5d4, #ff0a54, transparent);
+    box-shadow: 0 0 12px #ff0a54;
+    top: 0;
+    display: none;
+    animation: scanMove 1.4s linear infinite;
+  }
+  @keyframes scanMove {
+    0% { top: 5%; }
+    50% { top: 92%; }
+    100% { top: 5%; }
+  }
+  .meter-display {
+    background: #2b0918;
+    color: #ffccd5;
+    font-family: monospace;
+    font-size: 1.35rem;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 12px;
+    margin-top: 12px;
+    border: 2px solid #ff4d6d;
+  }
+  .meter-display.overheat {
+    background: #590d22;
+    color: #ffd166;
+    animation: shake 0.4s infinite;
+  }
+
+  /* ================= LEVEL 7: VIRTUAL PERIOD CARE KIT ================= */
+  .care-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .care-item {
+    background: #fff5f8;
+    border: 1.5px solid #ffb3c1;
+    border-radius: 16px;
+    padding: 12px 8px;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .care-item.used {
+    background: #ffe5ec;
+    border-color: #d6336c;
+    transform: scale(0.97);
+  }
+  .care-emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .care-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #800f2f;
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== SCREEN 1: PHONE LOCK ==================== -->
+<div id="screen-1" class="screen active">
+  <div class="card">
+    <div class="lock-icon">🔒💖</div>
+    <h1>Meri Queen Ka Secret Vault</h1>
+    <p class="subtitle">
+      Meri Biwi jii, aapke liye ek chhota sa pyar bhara comfort surprise banaya hai 🥺✨<br>
+      Mera special 4-digit password daliye (Hint: <b>2010</b>) 💕
+    </p>
+    <div class="pin-dots" id="pin-dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <p id="pin-msg" style="font-size: 0.82rem; color: #d6336c; min-height: 20px; font-weight: 500;"></p>
+    <div class="keypad">
+      <div class="key" onclick="pressPin('1')">1</div>
+      <div class="key" onclick="pressPin('2')">2</div>
+      <div class="key" onclick="pressPin('3')">3</div>
+      <div class="key" onclick="pressPin('4')">4</div>
+      <div class="key" onclick="pressPin('5')">5</div>
+      <div class="key" onclick="pressPin('6')">6</div>
+      <div class="key" onclick="pressPin('7')">7</div>
+      <div class="key" onclick="pressPin('8')">8</div>
+      <div class="key" onclick="pressPin('9')">9</div>
+      <div class="key empty"></div>
+      <div class="key" onclick="pressPin('0')">0</div>
+      <div class="key" onclick="clearPin()">⌫</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SCREEN 2: 3D HEART TREE ==================== -->
+<div id="screen-2" class="screen">
+  <div class="card">
+    <h1>Level 1: Pyar Ka 3D Tree 🌳✨</h1>
+    <p class="subtitle">
+      Meri Radha ji, is tree par khile har ek heart ko pyar se touch kijiye, har heart mein aapke liye 7 pyari lines chhupi hain 💖👇
+    </p>
+    <div class="tree-wrapper">
+      <!-- 3D Styled Tree SVG -->
+      <svg class="tree-svg" viewBox="0 0 300 300">
+        <defs>
+          <radialGradient id="canopyGrad" cx="40%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#ffccd5"/>
+            <stop offset="55%" stop-color="#ff8fa3"/>
+            <stop offset="100%" stop-color="#c9184a"/>
+          </radialGradient>
+          <linearGradient id="trunkGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#5c3a21"/>
+            <stop offset="50%" stop-color="#8d5b4c"/>
+            <stop offset="100%" stop-color="#4a2c18"/>
+          </linearGradient>
+        </defs>
+        <!-- Shadow -->
+        <ellipse cx="150" cy="288" rx="85" ry="10" fill="rgba(180, 70, 100, 0.2)"/>
+        <!-- Trunk -->
+        <path d="M135,285 Q140,210 120,165 L140,165 Q150,195 150,160 L165,160 Q160,195 178,165 L192,168 Q165,215 168,285 Z" fill="url(#trunkGrad)"/>
+        <!-- 3D Lush Canopy -->
+        <circle cx="95" cy="135" r="55" fill="url(#canopyGrad)"/>
+        <circle cx="205" cy="135" r="55" fill="url(#canopyGrad)"/>
+        <circle cx="150" cy="85" r="65" fill="url(#canopyGrad)"/>
+        <circle cx="120" cy="115" r="52" fill="url(#canopyGrad)"/>
+        <circle cx="180" cy="115" r="52" fill="url(#canopyGrad)"/>
+      </svg>
+
+      <!-- 5 Interactive Big Colorful Hearts -->
+      <div class="bloom-heart" style="top: 32px; left: 43%;" onclick="openHeartMsg(0, this)">❤️</div>
+      <div class="bloom-heart" style="top: 85px; left: 20%;" onclick="openHeartMsg(1, this)">💜</div>
+      <div class="bloom-heart" style="top: 85px; right: 20%;" onclick="openHeartMsg(2, this)">💛</div>
+      <div class="bloom-heart" style="top: 138px; left: 32%;" onclick="openHeartMsg(3, this)">🩵</div>
+      <div class="bloom-heart" style="top: 138px; right: 30%;" onclick="openHeartMsg(4, this)">🩷</div>
+    </div>
+    <p id="tree-counter" style="font-size: 0.85rem; font-weight: 600; color: #c9184a;">Touch kiye gaye hearts: 0 / 5 ✨</p>
+    <button class="btn-primary" id="btn-to-quiz" style="display:none;" onclick="goToScreen(3)">Aage Chalein Meri Jaan 🥰➡️</button>
+  </div>
+</div>
+
+<!-- ==================== SCREEN 3: FUNNY LOVE QUIZ ==================== -->
+<div id="screen-3" class="screen">
+  <div class="card">
+    <h1>Level 2: Ek Pyara Sa Sawaal 🙈💕</h1>
+    <p class="subtitle" style="font-size: 1rem; font-weight: 500; color: #6b1d3a;">
+      Meri Sweetheart, bade pyar se pooch raha hoon...<br>
+      <b>"Kya aap mujhse bahut zyada pyar karte hain?"</b> 🥺💖<br>
+      <span style="font-size: 0.83rem; color: #d6336c;">(Aur haan Meri Gudiya, bilkul bhi 'No' daba kar mat dekhna warna 'No' bhaag jayega 😜❤️)</span>
+    </p>
+
+    <div class="quiz-area" id="quiz-area">
+      <button class="btn-yes" onclick="triggerLoveExplosion()">Haan, Bahut Zyada! 😍</button>
+      <button class="btn-no" id="btn-no" ontouchstart="dodgeNo()" onmouseover="dodgeNo()" onclick="dodgeNo()">No 🙈</button>
+    </div>
+
+    <div class="thermo-box" id="thermo-box">
+      <p style="font-weight: 600; color: #d6336c; font-size: 0.95rem;">Aapka Pyar Measure Ho Raha Hai... 🌡️💓</p>
+      <div class="thermometer" id="thermometer">
+        <div class="mercury" id="mercury"></div>
+      </div>
+      <p id="thermo-result" style="font-size: 0.9rem; font-weight: 600; color: #800f2f; margin-top: 6px;"></p>
+      <button class="btn-primary" id="btn-to-cake" style="display:none;" onclick="goToScreen(4)">Agla Surprise Dekhein 🎂✨</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SCREEN 4: PERIOD COMFORT CAKE ==================== -->
+<div id="screen-4" class="screen">
+  <div class="card">
+    <h1>Level 3: Aapke Liye Comfort Cake 🎂🕯️</h1>
+    <p class="subtitle" id="cake-instruction">
+      Meri Baccha, candle par touch karke ise bujhaiye aur apna special cake cut kijiye 🥺💖
+    </p>
+
+    <div class="cake-stage" onclick="blowCandleAndCut()">
+      <div class="candle">
+        <div class="flame" id="candle-flame"></div>
+      </div>
+      <div class="cake-top" id="cake-top"></div>
+      <div class="cake-bottom">For My Biwi Jii 👑</div>
+    </div>
+
+    <div class="comfort-note" id="cake-note" style="display:none;">
+      <b>Meri Jaan,</b> abhi aapke periods chal rahe hain aur mujhe pata hai aapko dard ho raha hoga 🥺❤️. Isliye aapko special aur pampered feel karwane ke liye ye cake cut karwa raha hoon 🎂✨.<br><br>
+      <b>Meri Devi jii,</b> abhi hum saath mein real mein nahi hain isliye aise pyaar se mana raha hoon, par jis din aap poori tarah meri ban kar mere paas aa jayengi na <b>Meri Biwi</b>, us din real mein aapko har pal itna special aur comfort rakhunga ki aapko kabhi koi takleef mehsoos nahi hone dunga 🤗💞.
+    </div>
+
+    <button class="btn-primary" id="btn-to-balloons" style="display:none;" onclick="goToScreen(5)">4 Pyare Balloons Phodein 🎈✨</button>
+  </div>
+</div>
+
+<!-- ==================== SCREEN 5: 4 COMFORT BALLOONS ==================== -->
+<div id="screen-5" class="screen">
+  <div class="card">
+    <h1>Level 4: 4 Pyare Comfort Balloons 🎈💖</h1>
+    <p class="subtitle">
+      Meri Parvati jii, in chaaro balloons par ek-ek karke touch kijiye, har balloon ke andar aapke liye dil se likha hua ek lamba aur sukoon bhara message hai 🥰✨
+    </p>
+
+    <div class="balloon-grid">
+      <div class="balloon-item" onclick="popBalloon(0, this)">
+        <div class="balloon-shape" style="background: linear-gradient(135deg, #ff4d6d, #ff8fa3);">🎈1</div>
+      </div>
+      <div class="balloon-item" onclick="popBalloon(1, this)">
+        <div class="balloon-shape" style="background: linear-gradient(135deg, #9d4edd, #e0aaff);">🎈2</div>
+      </div>
+      <div class="balloon-item" onclick="popBalloon(2, this)">
+        <div class="balloon-shape" style="background: linear-gradient(135deg, #ff758f, #ffb3c1);">🎈3</div>
+      </div>
+      <div class="balloon-item" onclick="popBalloon(3, this)">
+        <div class="balloon-shape" style="background: linear-gradient(135deg, #f72585, #ff70a6);">🎈4</div>
+      </div>
+    </div>
+
+    <p id="balloon-counter" style="font-size: 0.85rem; font-weight: 600; color: #c9184a;">Pop kiye gaye balloons: 0 / 4 💕</p>
+    <button class="btn-primary" id="btn-to-scanner" style="display:none;" onclick="goToScreen(6)">Dudu Ki Machine Dekhein 🐻✨</button>
+  </div>
+</div>
+
+<!-- ==================== SCREEN 6: DUDU BEAUTY SCANNER ==================== -->
+<div id="screen-6" class="screen">
+  <div class="card">
+    <h1>Level 5: Dudu Ka Beauty Scanner 🐻📸</h1>
+    <p class="subtitle">
+      Meri Babu, aapka pyara sa 3D Dudu ek khaas beauty napne wali machine lekar aaya hai! Button dabaiye aur dekhiye Dudu kya scan karta hai 🙈💖
+    </p>
+
+    <div class="scanner-stage">
+      <div class="laser-line" id="laser-line"></div>
+      <div class="dudu-character" id="dudu-char">🐻📸</div>
+      <p id="dudu-speech" style="font-size: 0.85rem; color: #7a2846; margin-top: 6px; font-weight: 500;">
+        "Main aapki cuteness aur beauty scan karne ke liye ready hoon!" 🐻✨
+      </p>
+      <div class="meter-display" id="meter-display">READY TO SCAN...</div>
+    </div>
+
+    <button class="btn-primary" id="btn-scan" onclick="startBeautyScan()">Beauty Scan Shuru Karein ✨</button>
+    <button class="btn-primary" id="btn-to-care" style="display:none;" onclick="goToScreen(7)">Last Special Care Kit 🍫🧸</button>
+  </div>
+</div>
+
+<!-- ==================== SCREEN 7: FINAL PERIOD COMFORT KIT ==================== -->
+<div id="screen-7" class="screen">
+  <div class="card">
+    <h1>Final Level: Aapki Comfort Care Kit 🧸💝</h1>
+    <p class="subtitle">
+      Meri Gudiya, period pain ko bhagane ke liye neeche di gayi har cheez par touch karke use lijiye 🥰✨
+    </p>
+
+    <div class="care-grid">
+      <div class="care-item" onclick="useCareItem(this, 'Garama-garam heating pad aapke pet ke dard ko turant aaram dega Meri Baccha 🤗🔥')">
+        <span class="care-emoji">🔥</span>
+        <span class="care-label">Warm Heating Pad</span>
+      </div>
+      <div class="care-item" onclick="useCareItem(this, 'Aapki favourite sweet chocolates aapka mood ekdum khush kar dengi Meri Sweetheart 🍫💖')">
+        <span class="care-emoji">🍫</span>
+        <span class="care-label">Dark Chocolates</span>
+      </div>
+      <div class="care-item" onclick="useCareItem(this, 'Ek tight aur pyara sa virtual hug jo aapki saari thakan mita dega Meri Biwi jii 🫂💞')">
+        <span class="care-emoji">🫂</span>
+        <span class="care-label">Unlimited Tight Hugs</span>
+      </div>
+      <div class="care-item" onclick="useCareItem(this, 'Aap bas aaram se letiye Meri Radha ji, aapka khayal rakhne ke liye main hamesha hoon 🛌👑')">
+        <span class="care-emoji">👑</span>
+        <span class="care-label">Queen Rest Mode</span>
+      </div>
+    </div>
+
+    <p id="care-feedback" style="font-size: 0.88rem; color: #b5174c; font-weight: 600; min-height: 44px; margin-top: 6px;"></p>
+
+    <div style="background: #fff0f6; border-radius: 16px; padding: 14px; margin-top: 10px; border: 1.5px solid #ff8fa3;">
+      <p style="font-size: 0.88rem; line-height: 1.6; color: #4a1c2d;">
+        <b>Hamesha Aapka,</b><br>
+        Apna bahut khayal rakhiyega <b>Meri Jaan</b>. Pani peete rahiye, bilkul stress mat lijiye aur jab bhi dard ho ya mood kharab ho, bas mujhe yaad kar lijiyega. I Love You So Much <b>Meri Biwi</b>! ❤️♾️
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== UNIVERSAL MESSAGE POPUP MODAL ==================== -->
+<div class="modal-overlay" id="msg-modal" onclick="closeModal(event)">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-title" id="modal-title">Meri Jaan Ke Liye 💖</div>
+    <div class="modal-text" id="modal-body"></div>
+    <div style="text-align: center; margin-top: 16px;">
+      <button class="btn-primary" onclick="closeModal()">Pyar Se Band Karein 💕</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Ambient Floating Hearts & Sparkles
+  const floatEmojis = ['💖', '🌸', '✨', '💕', '🦋', '🌷'];
+  for (let i = 0; i < 16; i++) {
+    const el = document.createElement('div');
+    el.className = 'bg-floater';
+    el.innerText = floatEmojis[i % floatEmojis.length];
+    el.style.left = Math.random() * 95 + 'vw';
+    el.style.fontSize = (16 + Math.random() * 14) + 'px';
+    el.style.animationDuration = (8 + Math.random() * 8) + 's';
+    el.style.animationDelay = (Math.random() * 6) + 's';
+    document.body.appendChild(el);
+  }
+
+  function goToScreen(num) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-' + num).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* ================= LEVEL 1: PIN LOGIC ================= */
+  let enteredPin = "";
+  const correctPin = "2010";
+
+  function pressPin(digit) {
+    if (enteredPin.length >= 4) return;
+    enteredPin += digit;
+    updatePinDots();
+
+    if (enteredPin.length === 4) {
+      if (enteredPin === correctPin) {
+        document.getElementById('pin-msg').innerText = "Sahi password Meri Biwi jii! Khul raha hai... 💖✨";
+        setTimeout(() => goToScreen(2), 650);
+      } else {
+        const dots = document.getElementById('pin-dots');
+        dots.classList.add('shake');
+        document.getElementById('pin-msg').innerText = "Arre Meri Babu, galat ho gaya! 2010 daliye na 🥺💕";
+        setTimeout(() => {
+          dots.classList.remove('shake');
+          enteredPin = "";
+          updatePinDots();
+        }, 650);
+      }
+    }
+  }
+
+  function clearPin() {
+    enteredPin = enteredPin.slice(0, -1);
+    updatePinDots();
+    document.getElementById('pin-msg').innerText = "";
+  }
+
+  function updatePinDots() {
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach((d, idx) => {
+      d.classList.toggle('filled', idx < enteredPin.length);
+    });
+  }
+
+  /* ================= LEVEL 2: 5 HEARTS (7 LINES EACH + NICKNAME IN EVERY LINE) ================= */
+  const heartMessages = [
+    {
+      title: "Dil Ki Pehli Dhadkan ❤️",
+      lines: [
+        "1. Aaj aapko periods mein thoda bhi dard ho toh bilkul ghabraiyega mat Mera Baccha 🥺💖.",
+        "2. Main har pal aapke paas hoon aur aapka poora khayal rakhunga Meri Babu 🤗✨.",
+        "3. Aapki ek pyari si muskaan meri saari duniya roshan kar deti hai Meri Baby 🌸💕.",
+        "4. Aaj aapko bilkul kaam nahi karna hai, bas aaram se let kar rest kijiye Meri sweetheart 🛌❤️.",
+        "5. Aap mere liye is poori duniya ki sabse keemti khushi hain Meri Gudiya 🎀🥰.",
+        "6. Aapka har ek dard main apne dil mein samet lena chahta hoon Meri jaan 💞🌷.",
+        "7. Hamesha khush aur muskurate rahiye kyunki aap meri zindagi hain Meri Biwi 👑💍."
+      ]
+    },
+    {
+      title: "Sukoon Bhara Ehsaas 💜",
+      lines: [
+        "1. Jab bhi aap udaas hoti hain toh mera dil bhi bechain ho jata hai Meri Radha ji 🥺💜.",
+        "2. Aapki har chhoti si khwahish poori karna mera sabse bada farz hai Meri Devi jii 🙏✨.",
+        "3. Aap mere ghar aur mere dil ki sabse pavitra shakti hain Meri Parvati jii 🌸🌺.",
+        "4. In mushkil dinon mein aap apna sabse zyada dhyan rakhiyega Mera Baccha 🍵💖.",
+        "5. Main aapko duniya ka saara pyar aur sukoon dena chahta hoon Meri Babu 🥰💕.",
+        "6. Aap jab hasti hain toh lagta hai saari kayanat muskurane lagi hai Meri Baby 😍🌟.",
+        "7. Janam-janam tak main sirf aapka hi bankar rehna chahta hoon Meri Biwi ❤️♾️."
+      ]
+    },
+    {
+      title: "Meri Queen Ka Khayal 💛",
+      lines: [
+        "1. Aapki aankhon mein kabhi aansu mat aane dijiyega Meri sweetheart 🥺💛.",
+        "2. Garama-garam pani peete rahiye aur apna pet garam rakhiye Meri Gudiya 🔥☕.",
+        "3. Aapke bina meri har khushi adhoori si lagti hai Meri jaan 💓✨.",
+        "4. Aap meri zindagi ka sabse khoobsurat aashirwad hain Meri Radha ji 🌷💫.",
+        "5. Har kadam par main aapka haath tham kar aapke saath chalunga Meri Devi jii 🤝❤️.",
+        "6. Aapki har takleef ko pyar se mita dena chahta hoon Meri Parvati jii 🫂💕.",
+        "7. Aap sach mein duniya ki sabse pyari aur best life partner hain Meri Biwi 👑💖."
+      ]
+    },
+    {
+      title: "Pyar Ki Thandi Chhaon 🩵",
+      lines: [
+        "1. Aaj aapka mood jaisa bhi ho, main aapke saare nakhre pyar se uthaunga Mera Baccha 🙈🩵.",
+        "2. Aapko dher saari chocolates aur pyar bhejne ka dil kar raha hai Meri Babu 🍫💝.",
+        "3. Aapki awaaz sunte hi meri saari thakan pal bhar mein gayab ho jati hai Meri Baby 🎶💕.",
+        "4. Aap bilkul chinta mat kijiye, ye dard wale din bhi jaldi beet jayenge Meri sweetheart 🌈✨.",
+        "5. Main hamesha aapko ek nanhi si pari ki tarah sambhal kar rakhunga Meri Gudiya 🧚‍♀️❤️.",
+        "6. Aapke dil ki har baat main bina kahe samajh jata hoon Meri jaan 🥰💞.",
+        "7. Aap par sirf aur sirf mera pyar aur haq hai hamesha ke liye Meri Biwi 💍💖."
+      ]
+    },
+    {
+      title: "Hamesha Ka Saath 🩷",
+      lines: [
+        "1. Aap mere har din ki sabse pyari shuruat hain Meri Radha ji 🌅🩷.",
+        "2. Aapke chehre ki nooraniyat ke aage chaand bhi feeka pad jata hai Meri Devi jii 🌙✨.",
+        "3. Har janam mein mujhe bas aapka hi saath chahiye Meri Parvati jii 🙏💖.",
+        "4. Aaj aap bas apne favourite gaane suniye aur aaram kijiye Mera Baccha 🎧💕.",
+        "5. Aapko hug karke aapka saara dard kam karne ka mann kar raha hai Meri Babu 🫂❤️.",
+        "6. Aap mere dil ke sabse kareeb aur sabse khaas hain Meri Baby 🌸💓.",
+        "7. I love you sabse zyada, meri pyari aur sabse khoobsurat Meri Biwi 👑💞."
+      ]
+    }
+  ];
+
+  let readHearts = new Set();
+
+  function openHeartMsg(index, el) {
+    readHearts.add(index);
+    el.classList.add('read');
+    document.getElementById('tree-counter').innerText = `Touch kiye gaye hearts: ${readHearts.size} / 5 ✨`;
+
+    const data = heartMessages[index];
+    document.getElementById('modal-title').innerText = data.title;
+    document.getElementById('modal-body').innerHTML = data.lines.map(l => `<p>${l}</p>`).join('');
+    document.getElementById('msg-modal').classList.add('show');
+
+    if (readHearts.size === 5) {
+      document.getElementById('btn-to-quiz').style.display = 'inline-flex';
+    }
+  }
+
+  function closeModal() {
+    document.getElementById('msg-modal').classList.remove('show');
+  }
+
+  /* ================= LEVEL 3: RUNAWAY NO & KISS ATTACK ================= */
+  let noCount = 0;
+  function dodgeNo() {
+    noCount++;
+    const btn = document.getElementById('btn-no');
+    const maxX = 110;
+    const maxY = 65;
+    const randX = (Math.random() * maxX * 2) - maxX;
+    const randY = (Math.random() * maxY * 2) - maxY;
+    btn.style.transform = `translate(${randX}px, ${randY}px)`;
+    const teases = [
+      "Pakad ke dikhaiye Meri Babu 😜",
+      "No option band hai Meri Biwi 🙈",
+      "Sirf Yes hi chalega Meri Jaan 💖",
+      "Haww! Phir No dabaya? 😂❤️"
+    ];
+    btn.innerText = teases[noCount % teases.length];
+  }
+
+  function triggerLoveExplosion() {
+    document.getElementById('quiz-area').style.display = 'none';
+    const thermoBox = document.getElementById('thermo-box');
+    thermoBox.style.display = 'flex';
+
+    setTimeout(() => {
+      document.getElementById('mercury').style.height = '100%';
+    }, 100);
+
+    setTimeout(() => {
+      document.getElementById('thermometer').classList.add('broken');
+      document.getElementById('thermo-result').innerHTML =
+        "💥 OOPS! Aapke pyar ki garmi aur sharam ke maare thermometer bhi toot gaya Meri Biwi jii! 🙈🌡️💖<br>Ab lijiye dher saari pyari kisses ka attack! 😘💋";
+      launchKissAttack();
+      document.getElementById('btn-to-cake').style.display = 'inline-flex';
+    }, 1750);
+  }
+
+  function launchKissAttack() {
+    const kisses = ['💋', '😘', '💖', '💕', '🥰', '❤️'];
+    for (let i = 0; i < 38; i++) {
+      setTimeout(() => {
+        const k = document.createElement('div');
+        k.className = 'kiss-particle';
+        k.innerText = kisses[i % kisses.length];
+        k.style.left = Math.random() * 92 + 'vw';
+        k.style.top = '-30px';
+        document.body.appendChild(k);
+        setTimeout(() => k.remove(), 2700);
+      }, i * 65);
+    }
+  }
+
+  /* ================= LEVEL 4: CAKE & CANDLE ================= */
+  let cakeCut = false;
+  function blowCandleAndCut() {
+    if (cakeCut) return;
+    cakeCut = true;
+    document.getElementById('candle-flame').style.display = 'none';
+    document.getElementById('cake-top').classList.add('cake-cut-slice');
+    document.getElementById('cake-instruction').innerText = "Yayy! Candle bujh gayi aur aapka pyara cake cut ho gaya Meri Biwi jii 🎉🎂💖";
+    document.getElementById('cake-note').style.display = 'block';
+    document.getElementById('btn-to-balloons').style.display = 'inline-flex';
+  }
+
+  /* ================= LEVEL 5: 4 COMFORT BALLOONS ================= */
+  const balloonMessages = [
+    {
+      title: "Pehla Pyar Bhara Balloon 💖",
+      body: `<p><b>Meri Babu,</b> mujhe pata hai ki jab periods aate hain toh body mein kitni thakan, cramps aur chirchirapan hota hai 🥺❤️. Kaash main abhi aapke paas baith kar aapka haath pakad sakta aur aapke maathe par pyar se haath pher sakta 🤗✨.</p>
+             <p><b>Meri Biwi jii,</b> aap bilkul bhi akela mehsoos mat kijiyega. Mera dil har second aapke saath hai aur aapki har takleef ko pyar se halka karne ki koshish kar raha hai 💕🌸.</p>`
+    },
+    {
+      title: "Doosra Sukoon Bhara Balloon 💜",
+      body: `<p><b>Meri Radha ji,</b> aap mere liye sirf ek insaan nahi hain, balki meri poori duniya aur meri muskurahat ki wajah hain 🥰💜. Jab aap dard mein hoti hain toh mujhe bilkul achha nahi lagta.</p>
+             <p><b>Meri Devi jii,</b> aaj aap kisi bhi baat ki tension mat lijiyega. Bas apne aapko pamper kijiye, aaram kijiye aur yaad rakhiye ki koi hai jo aapse beintehaa mohabbat karta hai 👑✨.</p>`
+    },
+    {
+      title: "Teesra Sweet Comfort Balloon 🩷",
+      body: `<p><b>Meri Sweetheart,</b> aap jab thoda sa bhi udaas hoti hain toh lagta hai jaise mere aasman ke saare taare chhup gaye hon 🌙🩷. Aapki khushi mere liye sabse upar hai.</p>
+             <p><b>Meri Gudiya,</b> main vaada karta hoon ki jab aap hamesha ke liye mere paas aa jayengi, tab in dinon mein aapko kisi princess ki tarah rakhunga—garam chai, chocolates aur dher saare pyar ke saath ☕🍫💖.</p>`
+    },
+    {
+      title: "Chautha Hamesha Ka Vaada 💞",
+      body: `<p><b>Meri Parvati jii,</b> aapki himmat aur aapki saadgi mujhe har din aapse aur zyada pyar karne par majboor kar deti hai 🌸💞. Aap sach mein bahut strong aur pyari hain.</p>
+             <p><b>Meri Jaan,</b> jaldi se theek ho jaiye aur apni wohi pyari si muskaan wapas laaiye jo mera dil jeet leti hai. Hamesha aapka hoon aur hamesha aapka hi rahunga <b>Meri Biwi</b> ❤️💍.</p>`
+    }
+  ];
+
+  let poppedBalloons = new Set();
+  function popBalloon(idx, el) {
+    poppedBalloons.add(idx);
+    el.classList.add('popped');
+    el.querySelector('.balloon-shape').innerText = '💖';
+    document.getElementById('balloon-counter').innerText = `Pop kiye gaye balloons: ${poppedBalloons.size} / 4 💕`;
+
+    document.getElementById('modal-title').innerText = balloonMessages[idx].title;
+    document.getElementById('modal-body').innerHTML = balloonMessages[idx].body;
+    document.getElementById('msg-modal').classList.add('show');
+
+    if (poppedBalloons.size === 4) {
+      document.getElementById('btn-to-scanner').style.display = 'inline-flex';
+    }
+  }
+
+  /* ================= LEVEL 6: DUDU BEAUTY SCANNER ================= */
+  function startBeautyScan() {
+    const btn = document.getElementById('btn-scan');
+    btn.style.display = 'none';
+    const laser = document.getElementById('laser-line');
+    const meter = document.getElementById('meter-display');
+    const dudu = document.getElementById('dudu-char');
+    const speech = document.getElementById('dudu-speech');
+
+    laser.style.display = 'block';
+    speech.innerText = "Dudu screen ki taraf machine karke scan kar raha hai... 🔍✨";
+
+    let progress = 100;
+    const interval = setInterval(() => {
+      progress += Math.floor(Math.random() * 450);
+      meter.innerText = `BEAUTY LEVEL: ${progress}% 💓`;
+    }, 150);
+
+    setTimeout(() => {
+      clearInterval(interval);
+      laser.style.display = 'none';
+      meter.classList.add('overheat');
+      meter.innerText = "💥 ERROR: INFINITY (∞) - MACHINE BLAST! 💥";
+      dudu.innerText = "😵‍💫🐻💫";
+      dudu.classList.add('dizzy');
+      speech.innerHTML =
+        `<b style="color:#c9184a; font-size:0.95rem;">"Aap itni pyari hain Meri Biwi jii ki machine bhi aapki khoobsurati naap nahi sakti aur Dudu ko chakkar aa gaya! 🙈💖✨"</b>`;
+      document.getElementById('btn-to-care').style.display = 'inline-flex';
+    }, 2400);
+  }
+
+  /* ================= LEVEL 7: FINAL CARE KIT ================= */
+  function useCareItem(el, msg) {
+    el.classList.add('used');
+    document.getElementById('care-feedback').innerText = msg;
+  }
+</script>
+</body>
+</html>
